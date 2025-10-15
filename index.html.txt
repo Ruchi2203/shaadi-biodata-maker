@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Maker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Biodata Maker</h1>
+
+        <form id="biodataForm">
+            <label>Name:</label>
+            <input type="text" id="name" required>
+
+            <label>Age:</label>
+            <input type="number" id="age" required>
+
+            <label>Email:</label>
+            <input type="email" id="email" required>
+
+            <label>Phone:</label>
+            <input type="text" id="phone" required>
+
+            <label>Education:</label>
+            <textarea id="education" rows="3" required></textarea>
+
+            <label>Skills:</label>
+            <textarea id="skills" rows="3" required></textarea>
+
+            <label>Hobbies:</label>
+            <textarea id="hobbies" rows="2"></textarea>
+
+            <button type="submit">Generate Biodata</button>
+        </form>
+
+        <div id="biodataPreview" class="preview">
+            <h2>Biodata Preview</h2>
+            <p><strong>Name:</strong> <span id="previewName"></span></p>
+            <p><strong>Age:</strong> <span id="previewAge"></span></p>
+            <p><strong>Email:</strong> <span id="previewEmail"></span></p>
+            <p><strong>Phone:</strong> <span id="previewPhone"></span></p>
+            <p><strong>Education:</strong> <span id="previewEducation"></span></p>
+            <p><strong>Skills:</strong> <span id="previewSkills"></span></p>
+            <p><strong>Hobbies:</strong> <span id="previewHobbies"></span></p>
+            <button id="downloadBtn">Download as PDF</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+const form = document.getElementById('biodataForm');
+const preview = document.getElementById('biodataPreview');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    document.getElementById('previewName').innerText = document.getElementById('name').value;
+    document.getElementById('previewAge').innerText = document.getElementById('age').value;
+    document.getElementById('previewEmail').innerText = document.getElementById('email').value;
+    document.getElementById('previewPhone').innerText = document.getElementById('phone').value;
+    document.getElementById('previewEducation').innerText = document.getElementById('education').value;
+    document.getElementById('previewSkills').innerText = document.getElementById('skills').value;
+    document.getElementById('previewHobbies').innerText = document.getElementById('hobbies').value;
+
+    preview.style.display = 'block';
+});
+
+// PDF Download
+document.getElementById('downloadBtn').addEventListener('click', () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const name = document.getElementById('previewName').innerText;
+    const age = document.getElementById('previewAge').innerText;
+    const email = document.getElementById('previewEmail').innerText;
+    const phone = document.getElementById('previewPhone').innerText;
+    const education = document.getElementById('previewEducation').innerText;
+    const skills = document.getElementById('previewSkills').innerText;
+    const hobbies = document.getElementById('previewHobbies').innerText;
+
+    doc.setFontSize(16);
+    doc.text("Biodata", 105, 20, null, null, "center");
+    doc.setFontSize(12);
+    doc.text(`Name: ${name}`, 20, 40);
+    doc.text(`Age: ${age}`, 20, 50);
+    doc.text(`Email: ${email}`, 20, 60);
+    doc.text(`Phone: ${phone}`, 20, 70);
+    doc.text(`Education: ${education}`, 20, 80);
+    doc.text(`Skills: ${skills}`, 20, 90);
+    doc.text(`Hobbies: ${hobbies}`, 20, 100);
+
+    doc.save("biodata.pdf");
+});
