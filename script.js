@@ -1,52 +1,47 @@
-// Selected template
 let selectedTemplate = "template1";
+let profileImageData = "";
 
-// Update template when user selects
-const templateSelect = document.getElementById("template");
-templateSelect.addEventListener("change", () => {
-  selectedTemplate = templateSelect.value;
-  generateBiodata(); // Update preview
+// Template Selection
+document.getElementById("template").addEventListener("change", function() {
+  selectedTemplate = this.value;
+  generateBiodata();
 });
 
-// Profile Image Handling
-let profileImageData = "";
+// Profile Image Upload
 document.getElementById("profileImage").addEventListener("change", function(e) {
   const file = e.target.files[0];
-  if(file) {
+  if(file){
     const reader = new FileReader();
-    reader.onload = function(evt) {
+    reader.onload = function(evt){
       profileImageData = evt.target.result;
-      generateBiodata(); // Update preview with image
+      generateBiodata();
     }
     reader.readAsDataURL(file);
   }
 });
 
-// Generate Live Preview
-function generateBiodata() {
+// Live Preview
+function generateBiodata(){
   const output = document.getElementById("output");
-  const formInputs = Array.from(document.querySelectorAll("#biodataForm input, #biodataForm select"));
+  const inputs = Array.from(document.querySelectorAll("#biodataForm input, #biodataForm select"));
   
-  const fields = formInputs.map(i => {
-    if(i.type === "file") return ""; // Skip file input
+  const html = inputs.map(i => {
+    if(i.type === "file") return "";
     return `<p><strong>${i.placeholder}:</strong> ${i.value}</p>`;
   }).join("");
 
   output.innerHTML = `
     ${profileImageData ? `<img src="${profileImageData}">` : ''}
-    <div class="${selectedTemplate}">
-      ${fields}
-    </div>
+    <div class="${selectedTemplate}">${html}</div>
   `;
 }
 
 // Download PDF
-function downloadPDF() {
+function downloadPDF(){
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF('p', 'pt', 'a4');
+  const doc = new jsPDF('p','pt','a4');
   let y = 50;
 
-  // Template Styles
   switch(selectedTemplate){
     case "template1": doc.setTextColor("#e91e63"); doc.setFont("helvetica","bold"); break;
     case "template2": doc.setTextColor("#1976d2"); doc.setFont("helvetica","normal"); break;
@@ -61,16 +56,15 @@ function downloadPDF() {
   doc.text("Shaadi Biodata", 40, y);
   y += 40;
 
-  // Add Profile Image
   if(profileImageData){
-    doc.addImage(profileImageData, 'JPEG', 400, 20, 120, 90); // Rectangle image
+    doc.addImage(profileImageData,'JPEG',400,20,120,90);
   }
 
   doc.setFontSize(12);
-  const outputText = document.getElementById("output").innerText.split('\n');
-  outputText.forEach(line => {
-    doc.text(line, 40, y);
-    y += 20;
+  const lines = document.getElementById("output").innerText.split('\n');
+  lines.forEach(line => {
+    doc.text(line,40,y);
+    y+=20;
   });
 
   doc.save("Biodata.pdf");
