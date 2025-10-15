@@ -25,51 +25,95 @@
 
     <form id="biodataForm">
       <!-- Personal Details -->
-      <h2>Personal Details</h2>
-      <input type="text" id="name" placeholder="Full Name" required />
-      <input type="text" id="gender" placeholder="Gender" required />
-      <input type="date" id="dob" placeholder="Date of Birth" required />
-      <input type="text" id="pob" placeholder="Place of Birth" />
-      <input type="text" id="tob" placeholder="Time of Birth" />
-      <input type="text" id="rashi" placeholder="Rashi" />
-      <input type="text" id="nakshatra" placeholder="Nakshatra" />
-      <input type="text" id="height" placeholder="Height" />
-      <input type="text" id="marital" placeholder="Marital Status" />
-      <input type="text" id="religion" placeholder="Religion" />
-      <input type="text" id="motherTongue" placeholder="Mother Tongue" />
-      <input type="text" id="caste" placeholder="Caste" />
-      <input type="text" id="subCaste" placeholder="Sub Caste" />
-      <input type="text" id="gotra" placeholder="Gotra" />
-      <input type="text" id="manglik" placeholder="Manglik" />
-      <input type="text" id="complexion" placeholder="Complexion" />
-      <input type="text" id="education" placeholder="Highest Education" />
-      <input type="text" id="college" placeholder="College Name" />
-      <input type="text" id="occupation" placeholder="Job/Occupation" />
-      <input type="text" id="organization" placeholder="Organization Name" />
-      <input type="text" id="income" placeholder="Annual Income" />
+      <div class="card">
+        <h2>Personal Details</h2>
+        <div class="row">
+          <input type="text" id="name" placeholder="Full Name" required />
+          <input type="text" id="gender" placeholder="Gender" />
+        </div>
+        <div class="row">
+          <input type="date" id="dob" placeholder="Date of Birth" />
+          <input type="text" id="pob" placeholder="Place of Birth" />
+        </div>
+        <div class="row">
+          <input type="text" id="tob" placeholder="Time of Birth" />
+          <input type="text" id="rashi" placeholder="Rashi" />
+        </div>
+        <div class="row">
+          <input type="text" id="nakshatra" placeholder="Nakshatra" />
+          <input type="text" id="height" placeholder="Height" />
+        </div>
+        <div class="row">
+          <input type="text" id="marital" placeholder="Marital Status" />
+          <input type="text" id="religion" placeholder="Religion" />
+        </div>
+        <div class="row">
+          <input type="text" id="motherTongue" placeholder="Mother Tongue" />
+          <input type="text" id="caste" placeholder="Caste" />
+        </div>
+        <div class="row">
+          <input type="text" id="subCaste" placeholder="Sub Caste" />
+          <input type="text" id="gotra" placeholder="Gotra" />
+        </div>
+        <div class="row">
+          <input type="text" id="manglik" placeholder="Manglik" />
+          <input type="text" id="complexion" placeholder="Complexion" />
+        </div>
+        <div class="row">
+          <input type="text" id="education" placeholder="Highest Education" />
+          <input type="text" id="college" placeholder="College Name" />
+        </div>
+        <div class="row">
+          <input type="text" id="occupation" placeholder="Job/Occupation" />
+          <input type="text" id="organization" placeholder="Organization Name" />
+        </div>
+        <div class="row">
+          <input type="text" id="income" placeholder="Annual Income" />
+        </div>
+      </div>
 
       <!-- Family Details -->
-      <h2>Family Details</h2>
-      <input type="text" id="fatherName" placeholder="Father Name" />
-      <input type="text" id="fatherOccupation" placeholder="Father Occupation" />
-      <input type="text" id="motherName" placeholder="Mother Name" />
-      <input type="text" id="motherOccupation" placeholder="Mother Occupation" />
-      <input type="text" id="brotherName" placeholder="Brother Name" />
-      <input type="text" id="brotherOccupation" placeholder="Brother Occupation" />
-      <input type="text" id="sisterName" placeholder="Sister Name" />
-      <input type="text" id="sisterOccupation" placeholder="Sister Occupation" />
+      <div class="card">
+        <h2>Family Details</h2>
+        <div class="row">
+          <input type="text" id="fatherName" placeholder="Father Name" />
+          <input type="text" id="fatherOccupation" placeholder="Father Occupation" />
+        </div>
+        <div class="row">
+          <input type="text" id="motherName" placeholder="Mother Name" />
+          <input type="text" id="motherOccupation" placeholder="Mother Occupation" />
+        </div>
+        <div class="row">
+          <input type="text" id="brotherName" placeholder="Brother Name" />
+          <input type="text" id="brotherOccupation" placeholder="Brother Occupation" />
+        </div>
+        <div class="row">
+          <input type="text" id="sisterName" placeholder="Sister Name" />
+          <input type="text" id="sisterOccupation" placeholder="Sister Occupation" />
+        </div>
+      </div>
 
       <!-- Contact Information -->
-      <h2>Contact Information</h2>
-      <input type="text" id="contact" placeholder="Contact No" />
-      <input type="text" id="fatherContact" placeholder="Father Contact No" />
-      <input type="text" id="motherContact" placeholder="Mother Contact No" />
-      <input type="text" id="address" placeholder="Address" />
-      <input type="email" id="email" placeholder="Email ID" />
+      <div class="card">
+        <h2>Contact Information</h2>
+        <div class="row">
+          <input type="text" id="contact" placeholder="Contact No" />
+          <input type="text" id="fatherContact" placeholder="Father Contact No" />
+        </div>
+        <div class="row">
+          <input type="text" id="motherContact" placeholder="Mother Contact No" />
+          <input type="text" id="address" placeholder="Address" />
+        </div>
+        <div class="row">
+          <input type="email" id="email" placeholder="Email ID" />
+        </div>
+      </div>
 
-      <!-- Image Upload -->
-      <h2>Profile Image</h2>
-      <input type="file" id="profileImage" accept="image/*" />
+      <!-- Profile Image -->
+      <div class="card">
+        <h2>Profile Image</h2>
+        <input type="file" id="profileImage" accept="image/*" />
+      </div>
 
       <button type="button" onclick="generateBiodata()">Preview Biodata</button>
       <button type="button" onclick="downloadPDF()">Download PDF</button>

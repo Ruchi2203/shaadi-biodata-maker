@@ -21,7 +21,7 @@ function generateBiodata() {
   const fields = Array.from(document.querySelectorAll("#biodataForm input")).map(i => `<p><strong>${i.placeholder}:</strong> ${i.value}</p>`).join("");
   output.innerHTML = `
     <h2>Preview (${selectedTemplate})</h2>
-    ${profileImageData ? `<img src="${profileImageData}" style="max-width:100px;display:block;margin:0 auto;border-radius:50%;">` : ''}
+    ${profileImageData ? `<img src="${profileImageData}">` : ''}
     <div class="${selectedTemplate}">
       ${fields}
     </div>
@@ -35,46 +35,21 @@ function downloadPDF() {
 
   // Template Styles
   switch(selectedTemplate){
-    case "template1":
-      doc.setTextColor("#ff4081");
-      doc.setFont("helvetica","bold");
-      break;
-    case "template2":
-      doc.setTextColor("#1976d2");
-      doc.setFont("helvetica","normal");
-      break;
-    case "template3":
-      doc.setTextColor("#b8860b");
-      doc.setFont("times","bold");
-      break;
-    case "template4":
-      doc.setTextColor("#388e3c");
-      doc.setFont("helvetica","italic");
-      break;
-    case "template5":
-      doc.setTextColor("#d32f2f");
-      doc.setFont("courier","bold");
-      break;
-    case "template6":
-      doc.setTextColor("#9c27b0");
-      doc.setFont("helvetica","normal");
-      break;
-    case "template7":
-      doc.setTextColor("#ffffff");
-      doc.setFont("helvetica","bold");
-      doc.setFillColor(33,33,33); // Dark background
-      doc.rect(0,0,595,842,'F'); // Full page fill
-      doc.setTextColor("#ffffff");
-      break;
+    case "template1": doc.setTextColor("#ff4081"); doc.setFont("helvetica","bold"); break;
+    case "template2": doc.setTextColor("#1976d2"); doc.setFont("helvetica","normal"); break;
+    case "template3": doc.setTextColor("#b8860b"); doc.setFont("times","bold"); break;
+    case "template4": doc.setTextColor("#388e3c"); doc.setFont("helvetica","italic"); break;
+    case "template5": doc.setTextColor("#d32f2f"); doc.setFont("courier","bold"); break;
+    case "template6": doc.setTextColor("#9c27b0"); doc.setFont("helvetica","normal"); break;
+    case "template7": doc.setTextColor("#ffffff"); doc.setFont("helvetica","bold"); doc.setFillColor(33,33,33); doc.rect(0,0,595,842,'F'); break;
   }
 
-  // Title
   doc.setFontSize(20);
   doc.text("Shaadi Biodata", 40, y);
   y += 30;
 
   if(profileImageData){
-    doc.addImage(profileImageData, 'JPEG', 400, 20, 100, 100);
+    doc.addImage(profileImageData, 'JPEG', 400, 20, 120, 90);
   }
 
   doc.setFontSize(12);
