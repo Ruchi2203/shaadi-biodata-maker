@@ -1,98 +1,102 @@
-let selectedTemplate = "template1";
-let profileImageData = "";
+function generateBiodata() {
+  const name = document.getElementById('name').value;
+  const dob = document.getElementById('dob').value;
+  const height = document.getElementById('height').value;
+  const education = document.getElementById('education').value;
+  const occupation = document.getElementById('occupation').value;
+  const photo = document.getElementById('photo').files[0];
+  const template = document.getElementById('template').value;
 
-// Template Selection
-document.getElementById("template").addEventListener("change", function() {
-  selectedTemplate = this.value;
-  generateBiodata();
-});
-
-// Profile Image Upload
-document.getElementById("profileImage").addEventListener("change", function(e) {
-  const file = e.target.files[0];
-  if(file){
-    const reader = new FileReader();
-    reader.onload = function(evt){
-      profileImageData = evt.target.result;
-      generateBiodata();
-    }
-    reader.readAsDataURL(file);
+  let photoURL = '';
+  if(photo) {
+    photoURL = URL.createObjectURL(photo);
   }
-});
 
-// Live Preview
-function generateBiodata(){
-  const output = document.getElementById("output");
-  const inputs = Array.from(document.querySelectorAll("#biodataForm input, #biodataForm select"));
-  
-  const html = inputs.map(i => {
-    if(i.type === "file") return "";
-    return `<p><strong>${i.placeholder}:</strong> ${i.value}</p>`;
-  }).join("");
+  let templateHTML = '';
 
-  output.innerHTML = `
-    ${profileImageData ? `<img src="${profileImageData}">` : ''}
-    <div class="${selectedTemplate}">${html}</div>
-  `;
-}
-
-// Download PDF
-function downloadPDF(){
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF('p','pt','a4');
-  let y = 40;
-
-  // Template Styling
-  switch(selectedTemplate){
-    case "template1": doc.setTextColor("#e91e63"); doc.setFont("helvetica","bold"); break;
-    case "template2": doc.setTextColor("#1976d2"); doc.setFont("helvetica","normal"); break;
-    case "template3": doc.setTextColor("#b8860b"); doc.setFont("times","bold"); break;
-    case "template4": doc.setTextColor("#388e3c"); doc.setFont("helvetica","italic"); break;
-    case "template5": doc.setTextColor("#d32f2f"); doc.setFont("courier","bold"); break;
-    case "template6": doc.setTextColor("#9c27b0"); doc.setFont("helvetica","normal"); break;
-    case "template7": 
-      doc.setFillColor(33,33,33); 
-      doc.rect(0,0,595,842,'F'); 
-      doc.setTextColor("#fff"); 
-      doc.setFont("helvetica","bold"); 
+  switch(template){
+    case 'template1':
+      templateHTML = `
+      <div style="border:2px solid gold; padding:15px; border-radius:10px; font-family: 'Playfair Display', serif;">
+        <h2>${name}</h2>
+        ${photoURL ? `<img src="${photoURL}" alt="Photo">` : ''}
+        <p><strong>DOB:</strong> ${dob}</p>
+        <p><strong>Height:</strong> ${height}</p>
+        <p><strong>Education:</strong> ${education}</p>
+        <p><strong>Occupation:</strong> ${occupation}</p>
+      </div>`;
       break;
+    case 'template2':
+      templateHTML = `
+      <div style="border:2px solid teal; padding:15px; border-radius:10px; font-family: Arial, sans-serif;">
+        <h2 style="text-align:center;">${name}</h2>
+        ${photoURL ? `<div style="text-align:center;"><img src="${photoURL}" alt="Photo"></div>` : ''}
+        <p><strong>DOB:</strong> ${dob}</p>
+        <p><strong>Height:</strong> ${height}</p>
+        <p><strong>Education:</strong> ${education}</p>
+        <p><strong>Occupation:</strong> ${occupation}</p>
+      </div>`;
+      break;
+    case 'template3':
+      templateHTML = `
+      <div style="border:4px solid #ff7f50; padding:20px; border-radius:15px; background: linear-gradient(to right, #ffe4e1, #fffacd);">
+        <h2 style="color:#ff4500;">${name}</h2>
+        ${photoURL ? `<img src="${photoURL}" alt="Photo">` : ''}
+        <p><strong>DOB:</strong> ${dob}</p>
+        <p><strong>Height:</strong> ${height}</p>
+        <p><strong>Education:</strong> ${education}</p>
+        <p><strong>Occupation:</strong> ${occupation}</p>
+      </div>`;
+      break;
+    case 'template4':
+      templateHTML = `
+      <div style="border:2px double navy; padding:15px; border-radius:10px; font-family: Arial, sans-serif;">
+        <h2>${name}</h2>
+        ${photoURL ? `<img src="${photoURL}" alt="Photo">` : ''}
+        <p><strong>DOB:</strong> ${dob}</p>
+        <p><strong>Height:</strong> ${height}</p>
+        <p><strong>Education:</strong> ${education}</p>
+        <p><strong>Occupation:</strong> ${occupation}</p>
+      </div>`;
+      break;
+    case 'template5':
+      templateHTML = `
+      <div style="border:2px dotted purple; padding:20px; border-radius:15px; background-color:#fff0f5; font-family: 'Cursive', sans-serif;">
+        <h2 style="color:purple;">${name}</h2>
+        ${photoURL ? `<img src="${photoURL}" alt="Photo">` : ''}
+        <p><strong>DOB:</strong> ${dob}</p>
+        <p><strong>Height:</strong> ${height}</p>
+        <p><strong>Education:</strong> ${education}</p>
+        <p><strong>Occupation:</strong> ${occupation}</p>
+      </div>`;
+      break;
+    case 'template6':
+      templateHTML = `
+      <div style="border:2px solid gray; padding:20px; display:grid; grid-template-columns: 1fr 1fr; gap:15px; border-radius:10px; font-family: Arial, sans-serif;">
+        ${photoURL ? `<div><img src="${photoURL}" alt="Photo"></div>` : ''}
+        <div>
+          <h2>${name}</h2>
+          <p><strong>DOB:</strong> ${dob}</p>
+          <p><strong>Height:</strong> ${height}</p>
+          <p><strong>Education:</strong> ${education}</p>
+          <p><strong>Occupation:</strong> ${occupation}</p>
+        </div>
+      </div>`;
+      break;
+    case 'template7':
+      templateHTML = `
+      <div style="border:2px solid gold; padding:20px; border-radius:10px; background-color:#2c2c2c; color:white; font-family: Arial, sans-serif;">
+        <h2 style="color:gold;">${name}</h2>
+        ${photoURL ? `<img src="${photoURL}" alt="Photo">` : ''}
+        <p><strong>DOB:</strong> ${dob}</p>
+        <p><strong>Height:</strong> ${height}</p>
+        <p><strong>Education:</strong> ${education}</p>
+        <p><strong>Occupation:</strong> ${occupation}</p>
+      </div>`;
+      break;
+    default:
+      templateHTML = `<p>Template coming soon...</p>`;
   }
 
-  doc.setFontSize(22);
-  doc.text("💍 Shaadi Biodata", 40, y);
-  y += 30;
-
-  // Add Profile Image
-  if(profileImageData){
-    doc.addImage(profileImageData,'JPEG',400,20,120,90);
-  }
-
-  doc.setFontSize(12);
-  doc.setTextColor(doc.getTextColor() || "#000");
-
-  // Get all visible fields from preview
-  const outputDiv = document.getElementById("output");
-  const lines = Array.from(outputDiv.querySelectorAll('p')).map(p => p.innerText);
-
-  // Section Headers Styling
-  lines.forEach(line => {
-    if(line.includes("Details") || line.includes("Information") || line.includes("Image")){
-      doc.setFont("helvetica","bold");
-      doc.setFontSize(14);
-      doc.setTextColor(doc.getTextColor());
-      doc.text(line, 40, y);
-      y += 18;
-      doc.setFontSize(12);
-      doc.setFont("helvetica","normal");
-    } else {
-      doc.text(line, 40, y);
-      y += 16;
-    }
-    if(y > 780){ // Page break
-      doc.addPage();
-      y = 40;
-    }
-  });
-
-  doc.save("Shaadi_Biodata.pdf");
+  document.getElementById('biodataPreview').innerHTML = templateHTML;
 }

@@ -3,130 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Shaadi Biodata Maker</title>
+  <title>Biodata Studio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>💍 Premium Shaadi Biodata Maker</h1>
-    <p>Create a stylish biodata and download it as PDF</p>
+  <header>
+    <h1>Biodata Studio</h1>
+    <p>Create stylish and professional biodata in minutes!</p>
+  </header>
 
-    <!-- Template Selector -->
-    <div class="template-selector">
-      <label for="template">Choose Template:</label>
-      <select id="template">
-        <option value="template1">Elegant Pink</option>
-        <option value="template2">Classic Blue</option>
-        <option value="template3">Golden Theme</option>
-        <option value="template4">Green Serenity</option>
-        <option value="template5">Bold Red</option>
-        <option value="template6">Purple Elegance</option>
-        <option value="template7">Dark Modern</option>
-      </select>
-    </div>
+  <main>
+    <section class="form-section">
+      <h2>Fill Your Details</h2>
+      <form id="biodataForm">
+        <div class="form-group">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+        <div class="form-group">
+          <label for="height">Height:</label>
+          <input type="text" id="height" name="height">
+        </div>
+        <div class="form-group">
+          <label for="education">Education:</label>
+          <input type="text" id="education" name="education">
+        </div>
+        <div class="form-group">
+          <label for="occupation">Occupation:</label>
+          <input type="text" id="occupation" name="occupation">
+        </div>
+        <div class="form-group">
+          <label for="photo">Upload Photo:</label>
+          <input type="file" id="photo" name="photo" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label for="template">Choose Template:</label>
+          <select id="template">
+            <option value="template1">Classic Elegant</option>
+            <option value="template2">Modern Minimal</option>
+            <option value="template3">Creative Color Splash</option>
+            <option value="template4">Professional Corporate</option>
+            <option value="template5">Artistic Resume</option>
+            <option value="template6">Modern Grid</option>
+            <option value="template7">Premium Dark Mode</option>
+          </select>
+        </div>
+        <button type="button" onclick="generateBiodata()">Generate Biodata</button>
+      </form>
+    </section>
 
-    <form id="biodataForm">
-      <!-- Personal Details -->
-      <div class="card">
-        <h2>Personal Details</h2>
-        <div class="row">
-          <input type="text" placeholder="Full Name">
-          <input type="text" placeholder="Gender">
-        </div>
-        <div class="row">
-          <input type="date" placeholder="Date of Birth">
-          <input type="text" placeholder="Place of Birth">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Time of Birth">
-          <input type="text" placeholder="Rashi">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Nakshatra">
-          <input type="text" placeholder="Height">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Marital Status">
-          <input type="text" placeholder="Religion">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Mother Tongue">
-          <input type="text" placeholder="Caste">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Sub Caste">
-          <input type="text" placeholder="Gotra">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Manglik">
-          <input type="text" placeholder="Complexion">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Highest Education">
-          <input type="text" placeholder="College Name">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Job/Occupation">
-          <input type="text" placeholder="Organization Name">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Annual Income">
-        </div>
+    <section class="preview-section">
+      <h2>Preview</h2>
+      <div id="biodataPreview" class="biodata-preview">
+        <p>Fill the form to see live preview.</p>
       </div>
+    </section>
+  </main>
 
-      <!-- Family Details -->
-      <div class="card">
-        <h2>Family Details</h2>
-        <div class="row">
-          <input type="text" placeholder="Father Name">
-          <input type="text" placeholder="Father Occupation">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Mother Name">
-          <input type="text" placeholder="Mother Occupation">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Brother Name">
-          <input type="text" placeholder="Brother Occupation">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Sister Name">
-          <input type="text" placeholder="Sister Occupation">
-        </div>
-      </div>
-
-      <!-- Contact Information -->
-      <div class="card">
-        <h2>Contact Information</h2>
-        <div class="row">
-          <input type="text" placeholder="Contact No">
-          <input type="text" placeholder="Father Contact No">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Mother Contact No">
-          <input type="text" placeholder="Address">
-        </div>
-        <div class="row">
-          <input type="email" placeholder="Email ID">
-        </div>
-      </div>
-
-      <!-- Profile Image -->
-      <div class="card">
-        <h2>Profile Image</h2>
-        <input type="file" id="profileImage" accept="image/*">
-      </div>
-
-      <div class="buttons">
-        <button type="button" onclick="generateBiodata()">Preview Biodata</button>
-        <button type="button" onclick="downloadPDF()">Download PDF</button>
-      </div>
-    </form>
-
-    <div id="output"></div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
