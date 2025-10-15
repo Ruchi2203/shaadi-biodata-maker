@@ -40,8 +40,9 @@ function generateBiodata(){
 function downloadPDF(){
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF('p','pt','a4');
-  let y = 50;
+  let y = 40;
 
+  // Template Styling
   switch(selectedTemplate){
     case "template1": doc.setTextColor("#e91e63"); doc.setFont("helvetica","bold"); break;
     case "template2": doc.setTextColor("#1976d2"); doc.setFont("helvetica","normal"); break;
@@ -49,23 +50,49 @@ function downloadPDF(){
     case "template4": doc.setTextColor("#388e3c"); doc.setFont("helvetica","italic"); break;
     case "template5": doc.setTextColor("#d32f2f"); doc.setFont("courier","bold"); break;
     case "template6": doc.setTextColor("#9c27b0"); doc.setFont("helvetica","normal"); break;
-    case "template7": doc.setTextColor("#ffffff"); doc.setFont("helvetica","bold"); doc.setFillColor(33,33,33); doc.rect(0,0,595,842,'F'); break;
+    case "template7": 
+      doc.setFillColor(33,33,33); 
+      doc.rect(0,0,595,842,'F'); 
+      doc.setTextColor("#fff"); 
+      doc.setFont("helvetica","bold"); 
+      break;
   }
 
-  doc.setFontSize(20);
-  doc.text("Shaadi Biodata", 40, y);
-  y += 40;
+  doc.setFontSize(22);
+  doc.text("💍 Shaadi Biodata", 40, y);
+  y += 30;
 
+  // Add Profile Image
   if(profileImageData){
     doc.addImage(profileImageData,'JPEG',400,20,120,90);
   }
 
   doc.setFontSize(12);
-  const lines = document.getElementById("output").innerText.split('\n');
+  doc.setTextColor(doc.getTextColor() || "#000");
+
+  // Get all visible fields from preview
+  const outputDiv = document.getElementById("output");
+  const lines = Array.from(outputDiv.querySelectorAll('p')).map(p => p.innerText);
+
+  // Section Headers Styling
   lines.forEach(line => {
-    doc.text(line,40,y);
-    y+=20;
+    if(line.includes("Details") || line.includes("Information") || line.includes("Image")){
+      doc.setFont("helvetica","bold");
+      doc.setFontSize(14);
+      doc.setTextColor(doc.getTextColor());
+      doc.text(line, 40, y);
+      y += 18;
+      doc.setFontSize(12);
+      doc.setFont("helvetica","normal");
+    } else {
+      doc.text(line, 40, y);
+      y += 16;
+    }
+    if(y > 780){ // Page break
+      doc.addPage();
+      y = 40;
+    }
   });
 
-  doc.save("Biodata.pdf");
+  doc.save("Shaadi_Biodata.pdf");
 }
