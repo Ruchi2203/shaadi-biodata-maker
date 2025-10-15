@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shaadi Biodata Maker</title>
+  <!-- Link to CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -28,11 +29,15 @@
       <input type="text" id="hobbies" placeholder="Enter your hobbies" />
 
       <button type="button" onclick="generateBiodata()">Generate Biodata</button>
+      <button type="button" onclick="downloadPDF()">Download as PDF</button>
     </form>
 
     <div id="output"></div>
   </div>
 
+  <!-- Link to JS -->
   <script src="script.js"></script>
+  <!-- Include jsPDF library from CDN for PDF download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>
