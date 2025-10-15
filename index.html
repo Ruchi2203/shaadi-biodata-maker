@@ -4,40 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shaadi Biodata Maker</title>
-  <!-- Link to CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>💍 Shaadi Biodata Maker</h1>
-    <p>Fill your details below and download your biodata instantly.</p>
+    <p>Fill your details below to generate your biodata PDF.</p>
+
+    <!-- Template Selection -->
+    <label for="template">Select Template:</label>
+    <select id="template">
+      <option value="template1">Template 1</option>
+      <option value="template2">Template 2</option>
+      <option value="template3">Template 3</option>
+      <option value="template4">Template 4</option>
+      <option value="template5">Template 5</option>
+      <option value="template6">Template 6</option>
+      <option value="template7">Template 7</option>
+    </select>
 
     <form id="biodataForm">
-      <label>Full Name:</label>
-      <input type="text" id="name" placeholder="Enter your name" required />
+      <!-- Personal Details -->
+      <h2>Personal Details</h2>
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="text" id="gender" placeholder="Gender" required />
+      <input type="date" id="dob" placeholder="Date of Birth" required />
+      <input type="text" id="pob" placeholder="Place of Birth" />
+      <input type="text" id="tob" placeholder="Time of Birth" />
+      <input type="text" id="rashi" placeholder="Rashi" />
+      <input type="text" id="nakshatra" placeholder="Nakshatra" />
+      <input type="text" id="height" placeholder="Height" />
+      <input type="text" id="marital" placeholder="Marital Status" />
+      <input type="text" id="religion" placeholder="Religion" />
+      <input type="text" id="motherTongue" placeholder="Mother Tongue" />
+      <input type="text" id="caste" placeholder="Caste" />
+      <input type="text" id="subCaste" placeholder="Sub Caste" />
+      <input type="text" id="gotra" placeholder="Gotra" />
+      <input type="text" id="manglik" placeholder="Manglik" />
+      <input type="text" id="complexion" placeholder="Complexion" />
+      <input type="text" id="education" placeholder="Highest Education" />
+      <input type="text" id="college" placeholder="College Name" />
+      <input type="text" id="occupation" placeholder="Job/Occupation" />
+      <input type="text" id="organization" placeholder="Organization Name" />
+      <input type="text" id="income" placeholder="Annual Income" />
 
-      <label>Date of Birth:</label>
-      <input type="date" id="dob" required />
+      <!-- Family Details -->
+      <h2>Family Details</h2>
+      <input type="text" id="fatherName" placeholder="Father Name" />
+      <input type="text" id="fatherOccupation" placeholder="Father Occupation" />
+      <input type="text" id="motherName" placeholder="Mother Name" />
+      <input type="text" id="motherOccupation" placeholder="Mother Occupation" />
+      <input type="text" id="brotherName" placeholder="Brother Name" />
+      <input type="text" id="brotherOccupation" placeholder="Brother Occupation" />
+      <input type="text" id="sisterName" placeholder="Sister Name" />
+      <input type="text" id="sisterOccupation" placeholder="Sister Occupation" />
 
-      <label>Education:</label>
-      <input type="text" id="education" placeholder="Enter your education" required />
+      <!-- Contact Information -->
+      <h2>Contact Information</h2>
+      <input type="text" id="contact" placeholder="Contact No" />
+      <input type="text" id="fatherContact" placeholder="Father Contact No" />
+      <input type="text" id="motherContact" placeholder="Mother Contact No" />
+      <input type="text" id="address" placeholder="Address" />
+      <input type="email" id="email" placeholder="Email ID" />
 
-      <label>Occupation:</label>
-      <input type="text" id="occupation" placeholder="Enter your occupation" required />
+      <!-- Image Upload -->
+      <h2>Profile Image</h2>
+      <input type="file" id="profileImage" accept="image/*" />
 
-      <label>Hobbies:</label>
-      <input type="text" id="hobbies" placeholder="Enter your hobbies" />
-
-      <button type="button" onclick="generateBiodata()">Generate Biodata</button>
-      <button type="button" onclick="downloadPDF()">Download as PDF</button>
+      <button type="button" onclick="generateBiodata()">Preview Biodata</button>
+      <button type="button" onclick="downloadPDF()">Download PDF</button>
     </form>
 
     <div id="output"></div>
   </div>
 
-  <!-- Link to JS -->
-  <script src="script.js"></script>
-  <!-- Include jsPDF library from CDN for PDF download -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
