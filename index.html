@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaadi Biodata Maker</title>
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>💍 Shaadi Biodata Maker</h1>
+    <p>Fill your details below and download your biodata instantly.</p>
+
+    <form id="biodataForm">
+      <label>Full Name:</label>
+      <input type="text" id="name" placeholder="Enter your name" required />
+
+      <label>Date of Birth:</label>
+      <input type="date" id="dob" required />
+
+      <label>Education:</label>
+      <input type="text" id="education" placeholder="Enter your education" required />
+
+      <label>Occupation:</label>
+      <input type="text" id="occupation" placeholder="Enter your occupation" required />
+
+      <label>Hobbies:</label>
+      <input type="text" id="hobbies" placeholder="Enter your hobbies" />
+
+      <button type="button" onclick="generateBiodata()">Generate Biodata</button>
+      <button type="button" onclick="downloadPDF()">Download as PDF</button>
+    </form>
+
+    <div id="output"></div>
+  </div>
+
+  <!-- Link to JS -->
+  <script src="script.js"></script>
+  <!-- Include jsPDF library from CDN for PDF download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
